@@ -7,6 +7,8 @@ services:
       - '3000:3000'
     env_file:
       - .env
+    volumes:
+      - .:/app
     depends_on:
       - postgres
 
@@ -15,11 +17,11 @@ services:
     container_name: uniswap_db
     restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: uniswap
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
     ports:
-      - '5432:5432'
+      - '5433:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
 

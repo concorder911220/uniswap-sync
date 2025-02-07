@@ -14,3 +14,12 @@ export class CreatePoolDto {
     decimals: number;
   };
 }
+
+export class CreatePoolEetherDto {
+  liquidity: string;
+  sqrtPrice: string;
+  tick: string;
+  feeTier: string;
+  token0: string;
+  token1: string;
+}

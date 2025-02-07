@@ -20,6 +20,9 @@ export class PoolTempRepository {
       console.log('🛠 Swapping tables...');
       await queryRunner.startTransaction();
       try {
+        await queryRunner.manager.query(
+          'SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;',
+        );
         await queryRunner.manager.query('ALTER TABLE pool RENAME TO pool_old;');
         await queryRunner.manager.query(
           'ALTER TABLE pool_temp RENAME TO pool;',

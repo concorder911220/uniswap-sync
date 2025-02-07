@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ApolloClient, gql, HttpLink, InMemoryCache } from '@apollo/client';
 import fetch from 'cross-fetch';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Injectable()
 export class GraphqlClientService {
@@ -8,7 +10,7 @@ export class GraphqlClientService {
 
   constructor() {
     const link = new HttpLink({
-      uri: 'https://gateway.thegraph.com/api/196e8debeef42d0673e0b66934c36634/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV',
+      uri: `https://gateway.thegraph.com/api/${process.env.UNISWAP_API_KEY}/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV`,
       fetch,
     });
 
@@ -29,6 +31,7 @@ export class GraphqlClientService {
         query: gql(query),
 
         variables: { skip, first, lastTime },
+        fetchPolicy: 'no-cache',
       });
       if (!response || !response.data) {
         throw new Error('Failed to fetch data: No data returned');

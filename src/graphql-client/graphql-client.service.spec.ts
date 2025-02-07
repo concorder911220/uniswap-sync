@@ -56,6 +56,7 @@ describe('GraphqlClientService', () => {
     expect(apolloClientMock.query).toHaveBeenCalledWith({
       query: gql(mockQuery),
       variables: mockVariables,
+      fetchPolicy: 'no-cache',
     });
   });
 

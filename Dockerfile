@@ -1,5 +1,5 @@
 # Use development image
-FROM node:18-alpine
+FROM node:20.11.0-alpine
 
 WORKDIR /app
 
@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm run build
+
 EXPOSE 3000
 
-CMD ["npm", "run", "start:dev"]
+CMD ["sh", "-c", "npm run migration:run && npm test && npm start"]

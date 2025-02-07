@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { UniswapService } from './uniswap.service';
 
 @Controller('uniswap')
@@ -14,5 +14,10 @@ export class UniswapController {
   @Get('ticks')
   async getTicks() {
     return this.uniswapService.saveTicksToDatabase();
+  }
+
+  @Get('pool-info')
+  async getPoolInfo(@Query('poolId') poolId: string) {
+    return this.uniswapService.getPoolInfo(poolId);
   }
 }
