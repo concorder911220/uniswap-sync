@@ -41,7 +41,6 @@ docker compose up
 
 - **NestJS Framework**: Used for building the backend application due to its modular architecture and ease of testing.
 - **PostgreSQL**: Chosen for its robustness, support for complex queries, and concurrency features.
-- **Ethers.js**: Utilized for interacting with the Ethereum blockchain directly, providing an alternative data source.
 
 ## Database Structure
 
